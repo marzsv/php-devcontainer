@@ -1,0 +1,20 @@
+{
+	"name": "Gatekeeper",
+	"dockerComposeFile": "docker-compose.yaml",
+	"service": "app",
+    "workspaceFolder": "/workspaces/gatekeeper",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"GitHub.copilot",
+				"eamodio.gitlens",
+				"RapidAPI.vscode-rapidapi-client",
+				"junstyle.php-cs-fixer",
+				"xdebug.php-debug",
+				"bmewburn.vscode-intelephense-client",
+				"fabiospampinato.vscode-todo-plus"
+			]
+		}
+	},
+	"postCreateCommand": "ln -fs \"/usr/share/zoneinfo/$TIMEZONE\" /etc/localtime && dpkg-reconfigure --frontend noninteractive tzdata"
+}

@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  app:
+    image: marzsv/php81-devcontainer:latest
+    command: sleep infinity
+    volumes:
+      - ./.zshrc:/root/.zshrc
+      - ./php.ini:/usr/local/etc/php/php.ini
+      - ./xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+      - ./.aws:/root/.aws/
+      - ./aws-wrapper.sh:/usr/local/bin/awslocal
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ..:/workspaces/gatekeeper
+    environment:
+      SHELL: ${SHELL:-/bin/zsh}
+      OH_MY_ZSH_THEME: ${OH_MY_ZSH_THEME:-candy}
+      WEB_SERVER_PORT: ${WEB_SERVER_PORT:-8000}
+      AWS_ENDPOINT_URL: ${AWS_ENDPOINT_URL:-http://luep-localstack:4566}
+      AWS_PROFILE: ${AWS_PROFILE:-default}
+      MAIN_CONTAINER_NAME: ${MAIN_CONTAINER_NAME:-luep-localstack}
+      VISUAL: ${VISUAL:-vim}
+      TIMEZONE: ${TIMEZONE:-Etc/UTC}
+  redis:
+    image: redis:7
+    entrypoint: redis-server --save 60 1 --loglevel warning
+  mysql:
+    image: mysql:8
+    platform: linux/amd64
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
