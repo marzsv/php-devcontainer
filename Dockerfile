@@ -4,7 +4,7 @@ FROM php:8.1
 RUN apt-get update && apt-get install -y zlib1g-dev libpng-dev libjpeg62-turbo-dev \
     libfreetype6-dev gettext autoconf make vim git openssh-client zsh \
     libmcrypt-dev bash less docker python3 python3-dev python3-pip \
-    libffi-dev groff redis-server build-essential g++ locales-all tzdata
+    libffi-dev groff redis-server build-essential g++ locales-all tzdata zip
 
 
 # Install Python dependencies
